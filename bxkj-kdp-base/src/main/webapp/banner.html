@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>数据管理平台</title>
+<link rel="stylesheet" type="text/css" href="css/easyui.css">
+<link rel="stylesheet" type="text/css" href="css/icon.css">
+<link rel="stylesheet" type="text/css" href="css/demo.css">
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="js/demo.js"></script>
+<script type="text/javascript" src="js/bannerrelated.js"></script>
+<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+</head>
+<body>
+
+	<div>
+		<table width="100%">
+			<tr>
+				<!-- <td>
+					<h2>编辑Banner信息</h2>
+				</td> -->
+				<td align="right"><a href="/superiorcourts/login">退出</a></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table width="95%">
+			<tr>
+				<td>
+					<h2>编辑Banner信息</h2>
+				</td>
+				<td align="right"><a href="/superiorcourts/demandtrial.html">推荐点播信息列表</a></td>
+			</tr>
+		</table>
+	</div>
+	<form id="uploadForm" method="POST" action="uploadFile"
+		enctype="multipart/form-data">
+
+		<table border="0">
+
+			<tr align="center">
+				<th></th>
+				<th>法院</th>
+				<th>法庭</th>
+				<th>案号</th>
+				<th>庭次</th>
+				<th>视频地址</th>
+				<th>图片名称</th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>请选择：</td>
+				<td><input id="txtShouName" name="fydm" style="width: 200px;"></td>
+				<td><input id="txtPipeRowName" name="ftbs"
+					style="width: 170px;"></td>
+				<td><input id="txtPipeName" name="ajbs" style="width: 170px;"></td>
+				<td><input id="txtTc" name="tc" style="width: 70px;"></td>
+				<td><input id="url" type="text" name="url"
+					style="width: 270px;" /></td>
+				<td><input id="file" name="file" type="file"
+					style="width: 170px;" /></td>
+				<td><input id="save" type="button" value="保存"
+					onclick="saveBanner()" style="width: 70px;" /></td>
+			</tr>
+
+
+
+		</table>
+	</form>
+	<!-- 	<div class="demo-info">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>Click the edit button on the right side of row to start
+			editing.</div>
+	</div> -->
+
+	<!-- 	<div style="margin: 10px 0">
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			onclick="insert()">Insert Row</a>
+	</div> -->
+	<br />
+
+	<table id="tt"></table>
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<h2>数据同步</h2>
+
+	<div id="syncbutton" class="demo-info" style="width: 100%">
+
+		<input id="save" type="button" value="同步法院信息" onclick="syncUnit()"
+			style="width: 170px;" /> <input id="save" type="button"
+			value="同步法庭信息" onclick="syncCourtRoom()" style="width: 170px;" /> <input
+			id="save" type="button" value="同步部门信息" onclick="syncDepartment()"
+			style="width: 170px;" /> <input id="save" type="button"
+			value="同步用户信息" onclick="syncUser()" style="width: 170px;" />
+	</div>
+</body>
+</html>

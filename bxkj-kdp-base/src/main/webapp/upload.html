@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Upload File Request Page</title>
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	
+	<script>
+	 
+	function dosomething() {
+		$.ajax({
+		    url: '/uploadFile',
+		    type: 'POST',
+		    cache: false,
+		    data: new FormData($('#uploadForm')[0]),
+		    processData: false,
+		    contentType: false
+		}).done(function(res) {
+			alert(res)
+		}).fail(function(res) {});
+	}
+	
+	</script>
+</head>
+<body>
+
+	<form id="uploadForm" method="POST" action="uploadFile" enctype="multipart/form-data">
+		File to upload: <input type="file" name="file"><br /> 
+		Name: <input type="text" name="name"><br /> <br /> 
+		<!-- <input type="submit" value="Upload"> --> 
+		<button id="upload" type="button" onclick="dosomething()">upload</button>Press here to upload the file!
+	</form>
+	
+</body>
+</html>

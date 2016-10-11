@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry
+		location="D:\java\workspace\bxkj-hdp-base\lib\mysql-connector-java-5.1.39.jar" />
+
+	<context id="context">
+
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/superior_courts" userId="root"
+			password="123456">
+		</jdbcConnection>
+
+		<javaModelGenerator targetPackage="com.bxkj.kdp.persistence.domain"
+			targetProject="bxkj-hdp-base">
+			<property name="rootClass" value="com.bxkj.kdp.persistence.Domain" />
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.bxkj.kdp.persistence.mapper"
+			targetProject="bxkj-hdp-base">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.bxkj.kdp.persistence.mapper" targetProject="bxkj-hdp-base">
+			<property name="rootInterface" value="com.bxkj.kdp.persistence.GenericMapper" />
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="lngf_user" schema="ambari"
+			domainObjectName="LngfUser">
+			<generatedKey column="id" sqlStatement="MySql" />
+			<columnRenamingRule searchString="^lngf_" replaceString="" />
+		</table> 
+
+		<!-- 
+		<table tableName="%">
+			<generatedKey column="id" sqlStatement="Mysql" />
+		</table>
+ 		-->
+	</context>
+</generatorConfiguration>

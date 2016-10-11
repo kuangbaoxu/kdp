@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bxkj.kdp.persistence.mapper.LngfUserMapper">
+  <resultMap id="BaseResultMap" type="com.bxkj.kdp.persistence.domain.LngfUser">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="RYBS" jdbcType="VARCHAR" property="rybs" />
+    <result column="RYMC" jdbcType="VARCHAR" property="rymc" />
+    <result column="BMBS" jdbcType="VARCHAR" property="bmbs" />
+    <result column="SJHM" jdbcType="VARCHAR" property="sjhm" />
+    <result column="DZYX" jdbcType="VARCHAR" property="dzyx" />
+    <result column="IMZH" jdbcType="VARCHAR" property="imzh" />
+    <result column="XB" jdbcType="VARCHAR" property="xb" />
+    <result column="SFYX" jdbcType="VARCHAR" property="sfyx" />
+    <result column="LAST_UPDATED_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedStamp" />
+    <result column="LAST_UPDATED_TX_STAMP" jdbcType="TIMESTAMP" property="lastUpdatedTxStamp" />
+    <result column="CREATED_STAMP" jdbcType="TIMESTAMP" property="createdStamp" />
+    <result column="CREATED_TX_STAMP" jdbcType="TIMESTAMP" property="createdTxStamp" />
+    <result column="VALIDATE_FLAG" jdbcType="VARCHAR" property="validateFlag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, RYBS, RYMC, BMBS, SJHM, DZYX, IMZH, XB, SFYX, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, 
+    CREATED_STAMP, CREATED_TX_STAMP, VALIDATE_FLAG
+  </sql>
+  <select id="selectByExample" parameterType="com.bxkj.kdp.persistence.domain.LngfUserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lngf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lngf_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lngf_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bxkj.kdp.persistence.domain.LngfUserExample">
+    delete from lngf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bxkj.kdp.persistence.domain.LngfUser">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lngf_user (ID, RYBS, RYMC, 
+      BMBS, SJHM, DZYX, IMZH, 
+      XB, SFYX, LAST_UPDATED_STAMP, 
+      LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, 
+      VALIDATE_FLAG)
+    values (#{id,jdbcType=INTEGER}, #{rybs,jdbcType=VARCHAR}, #{rymc,jdbcType=VARCHAR}, 
+      #{bmbs,jdbcType=VARCHAR}, #{sjhm,jdbcType=VARCHAR}, #{dzyx,jdbcType=VARCHAR}, #{imzh,jdbcType=VARCHAR}, 
+      #{xb,jdbcType=VARCHAR}, #{sfyx,jdbcType=VARCHAR}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}, 
+      #{validateFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bxkj.kdp.persistence.domain.LngfUser">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into lngf_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      ID,
+      <if test="rybs != null">
+        RYBS,
+      </if>
+      <if test="rymc != null">
+        RYMC,
+      </if>
+      <if test="bmbs != null">
+        BMBS,
+      </if>
+      <if test="sjhm != null">
+        SJHM,
+      </if>
+      <if test="dzyx != null">
+        DZYX,
+      </if>
+      <if test="imzh != null">
+        IMZH,
+      </if>
+      <if test="xb != null">
+        XB,
+      </if>
+      <if test="sfyx != null">
+        SFYX,
+      </if>
+      <if test="lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP,
+      </if>
+      <if test="lastUpdatedTxStamp != null">
+        LAST_UPDATED_TX_STAMP,
+      </if>
+      <if test="createdStamp != null">
+        CREATED_STAMP,
+      </if>
+      <if test="createdTxStamp != null">
+        CREATED_TX_STAMP,
+      </if>
+      <if test="validateFlag != null">
+        VALIDATE_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=INTEGER},
+      <if test="rybs != null">
+        #{rybs,jdbcType=VARCHAR},
+      </if>
+      <if test="rymc != null">
+        #{rymc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbs != null">
+        #{bmbs,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhm != null">
+        #{sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzyx != null">
+        #{dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="imzh != null">
+        #{imzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null">
+        #{sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedStamp != null">
+        #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedTxStamp != null">
+        #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null">
+        #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTxStamp != null">
+        #{createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateFlag != null">
+        #{validateFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bxkj.kdp.persistence.domain.LngfUserExample" resultType="java.lang.Long">
+    select count(*) from lngf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update lngf_user
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.rybs != null">
+        RYBS = #{record.rybs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rymc != null">
+        RYMC = #{record.rymc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bmbs != null">
+        BMBS = #{record.bmbs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjhm != null">
+        SJHM = #{record.sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dzyx != null">
+        DZYX = #{record.dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imzh != null">
+        IMZH = #{record.imzh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xb != null">
+        XB = #{record.xb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sfyx != null">
+        SFYX = #{record.sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdatedTxStamp != null">
+        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdStamp != null">
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdTxStamp != null">
+        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.validateFlag != null">
+        VALIDATE_FLAG = #{record.validateFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update lngf_user
+    set ID = #{record.id,jdbcType=INTEGER},
+      RYBS = #{record.rybs,jdbcType=VARCHAR},
+      RYMC = #{record.rymc,jdbcType=VARCHAR},
+      BMBS = #{record.bmbs,jdbcType=VARCHAR},
+      SJHM = #{record.sjhm,jdbcType=VARCHAR},
+      DZYX = #{record.dzyx,jdbcType=VARCHAR},
+      IMZH = #{record.imzh,jdbcType=VARCHAR},
+      XB = #{record.xb,jdbcType=VARCHAR},
+      SFYX = #{record.sfyx,jdbcType=VARCHAR},
+      LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
+      VALIDATE_FLAG = #{record.validateFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bxkj.kdp.persistence.domain.LngfUser">
+    update lngf_user
+    <set>
+      <if test="rybs != null">
+        RYBS = #{rybs,jdbcType=VARCHAR},
+      </if>
+      <if test="rymc != null">
+        RYMC = #{rymc,jdbcType=VARCHAR},
+      </if>
+      <if test="bmbs != null">
+        BMBS = #{bmbs,jdbcType=VARCHAR},
+      </if>
+      <if test="sjhm != null">
+        SJHM = #{sjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="dzyx != null">
+        DZYX = #{dzyx,jdbcType=VARCHAR},
+      </if>
+      <if test="imzh != null">
+        IMZH = #{imzh,jdbcType=VARCHAR},
+      </if>
+      <if test="xb != null">
+        XB = #{xb,jdbcType=VARCHAR},
+      </if>
+      <if test="sfyx != null">
+        SFYX = #{sfyx,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatedStamp != null">
+        LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedTxStamp != null">
+        LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null">
+        CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTxStamp != null">
+        CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validateFlag != null">
+        VALIDATE_FLAG = #{validateFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bxkj.kdp.persistence.domain.LngfUser">
+    update lngf_user
+    set RYBS = #{rybs,jdbcType=VARCHAR},
+      RYMC = #{rymc,jdbcType=VARCHAR},
+      BMBS = #{bmbs,jdbcType=VARCHAR},
+      SJHM = #{sjhm,jdbcType=VARCHAR},
+      DZYX = #{dzyx,jdbcType=VARCHAR},
+      IMZH = #{imzh,jdbcType=VARCHAR},
+      XB = #{xb,jdbcType=VARCHAR},
+      SFYX = #{sfyx,jdbcType=VARCHAR},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+      VALIDATE_FLAG = #{validateFlag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
